@@ -30,13 +30,17 @@ def validate_line(line):
 
 
 if __name__ == '__main__':
-    with open("input_test.txt") as file:
+    with open("input.txt") as file:
         lines = [line.rstrip() for line in file]
 
     valid_equations = []
+    result = 0
 
     for line in lines:
         if validate_line(line):
-            valid_equations.append(line)
+            valid_equations.append((line))
 
-    print("valid_equations: ", valid_equations)
+    totals = [item.split(':')[0] for item in valid_equations if ':' in item]
+    total_sum = sum(int(num) for num in totals)
+
+    print("Total: ", total_sum)
